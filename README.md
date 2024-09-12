@@ -72,6 +72,72 @@ The `serverless.yml` file contains the main configuration for the project:
 3. `getObjectTS`: Retrieves an object from S3 (TypeScript version)
 4. `listObjects`: Lists objects in the S3 bucket
 
+## Endpoints
+
+When running the application locally using `serverless offline`, the following endpoints are available:
+
+### HTTP Endpoints
+
+These endpoints simulate API Gateway requests:
+
+1. Root endpoint:
+   ```
+   GET http://localhost:4000/dev
+   ```
+
+2. Get Object (JavaScript version):
+   ```
+   GET http://localhost:4000/dev/get-object-js
+   ```
+
+3. Get Object (TypeScript version):
+   ```
+   GET http://localhost:4000/dev/get-object-ts
+   ```
+
+4. List Objects:
+   ```
+   GET http://localhost:4000/dev/list-objects
+   ```
+
+### Lambda Invocation Endpoints
+
+These endpoints allow direct invocation of Lambda functions:
+
+1. Webhook function:
+   ```
+   POST http://localhost:4000/2015-03-31/functions/webhook/invocations
+   ```
+
+2. Get Object function (JavaScript):
+   ```
+   POST http://localhost:4000/2015-03-31/functions/getObjectJS/invocations
+   ```
+
+3. Get Object function (TypeScript):
+   ```
+   POST http://localhost:4000/2015-03-31/functions/getObjectTS/invocations
+   ```
+
+4. List Objects function:
+   ```
+   POST http://localhost:4000/2015-03-31/functions/listObjects/invocations
+   ```
+
+To test these endpoints, you can use tools like cURL, Postman, or any HTTP client. For the POST requests to Lambda invocation endpoints, you'll need to provide a JSON payload that mimics the event object that AWS Lambda would receive.
+
+Example using cURL for a GET request:
+```bash
+curl http://localhost:4000/dev/get-object-js
+```
+
+Example using cURL for a POST request to invoke a Lambda function:
+```bash
+curl -X POST http://localhost:4000/2015-03-31/functions/getObjectJS/invocations -d '{}'
+```
+
+Remember to replace the empty JSON payload `'{}'` with actual test data as needed for your functions.
+
 ## Local S3 Bucket
 
 The project uses `serverless-s3-local` to simulate an S3 bucket locally. The bucket is named `local-bucket` and is configured in the `serverless.yml` file.
@@ -89,6 +155,7 @@ To deploy to AWS:
 ```
 serverless deploy
 ```
+
 
 ## Notes
 
