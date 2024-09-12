@@ -1,0 +1,23 @@
+{
+  "name": "s3-lambda-esbuild-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debug": "export SLS_DEBUG=* && serverless offline -t"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.49.1",
+    "aws-sdk": "^2.1673.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^22.5.1",
+    "serverless-offline": "^14.3.1",
+    "serverless-s3-local": "^0.8.5",
+    "typescript": "^5.5.4"
+  }
+}
